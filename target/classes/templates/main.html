@@ -1,0 +1,42 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Getting Started: Serving Web Content</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+   <div th:insert="parts/common :: common"></div>
+</head>
+<body>
+<header th:insert="parts/header :: header"></header>
+<div>
+    <form th:action="@{/logout}" method="post">
+        <input type="submit" value="Sign Out"/>
+    </form>
+    <span><a href="/user">User list</a></span>
+</div>
+<div>
+    <form method="post" enctype="multipart/form-data">
+     <input type="text" name="text" placeholder="Введите сообщение"/>
+        <input type="text" name="tag" placeholder="Тэг"/>
+        <input type="file" name="file">
+        <button type="submit">Добавить </button>
+    </form>
+</div>
+<div> Список сообщений</div>
+<form method="get" action="/main">
+    <input type="text" name="filter" th:value="${filter}">
+    <button type="submit">Найти </button>
+</form>
+
+<th:block th:each="el : ${messages}">
+    <div>
+        <b th:text="${el.id}"/>
+       <span th:text="${el.tag}"/>
+        <a th:text="${el.text}"/>
+        <strong th:text="${el.authorName}"/>
+        <div>
+            <img th:src="@{${'/img/' + el.filename}}"/>
+        </div>
+    </div>
+</th:block>
+</body>
+</html>
