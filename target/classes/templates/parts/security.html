@@ -1,0 +1,22 @@
+<div th:fragment="security"/>
+<html xmlns:th="http://www.thymeleaf.org" lang="ru"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div sec:authorize ="hasAuthority('USER')">
+    <h1><a href="/"></a></h1>
+    <h1><a href="/main"></a></h1>
+</div>
+<div sec:authorize="hasAuthority('USER')">
+    <h1><a href="/"></a></h1>
+    <h1><a href="/main"></a></h1>
+    <h1><a href="/user"></a></h1>
+
+</div>
+
+</body>
+</html>
